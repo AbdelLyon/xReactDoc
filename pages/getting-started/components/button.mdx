@@ -1,0 +1,131 @@
+### Import
+
+```tsx filename="Exemple.tsx"
+import { Button } from "@xefi/x-react/Button";
+```
+
+Button Component exporte 2 composants :
+
+- `Button` : Le composant principal pour afficher un bouton.
+- `ButtonGroup` : Un composant wrapper pour afficher un groupe de boutons.
+
+### Colors
+
+<Tabs items={["Preview", "Code"]}>
+ <Tabs.Tab>
+   {["primary", "secondary", "success", "danger", "warning"].map((color) => (
+     <Button key={color} color={color} className="mr-2" rounded="sm">
+       {color.charAt(0).toUpperCase() + color.slice(1)}
+     </Button>
+   ))}
+ </Tabs.Tab>
+ <Tabs.Tab>
+
+```tsx filename="Exemple.tsx"
+import { Button } from "x-react/button";
+
+export default function Example() {
+  const colors = ["primary", "secondary", "success", "danger", "warning"];
+
+  return (
+    <>
+      {colors.map((color) => (
+        <Button key={color} color={color} className="mr-2" rounded="sm">
+          {color.charAt(0).toUpperCase() + color.slice(1)}
+        </Button>
+      ))}
+    </>
+  );
+}
+```
+
+ </Tabs.Tab>
+</Tabs>
+
+### Variants
+
+<Tabs items={["Preview", "Code"]}>
+ <Tabs.Tab>
+   {["solid", "bordered", "faded", "shadow"].map((variant) => (
+     <Button key={variant} variant={variant} color="primary" className="mr-2" rounded="sm">
+       {variant.charAt(0).toUpperCase() + variant.slice(1)}
+     </Button>
+   ))}
+ </Tabs.Tab>
+ <Tabs.Tab>
+
+```tsx filename="Exemple.tsx"
+import { Button } from "x-react/button";
+
+export default function Example() {
+  const variants = ["solid", "bordered", "faded", "shadow"];
+
+  return (
+    <>
+      {variants.map((variant) => (
+        <Button
+          key={variant}
+          variant={variant}
+          color="primary"
+          className="mr-2"
+          rounded="sm"
+        >
+          {variant.charAt(0).toUpperCase() + variant.slice(1)}
+        </Button>
+      ))}
+    </>
+  );
+}
+```
+
+ </Tabs.Tab>
+</Tabs>
+
+### Avec icons
+
+<Tabs items={["Preview", "Code"]}>
+ <Tabs.Tab>
+   {[<IconPlus />, <IconTrash />].map((icon, i) => (
+     <Button key={i}  color="primary" className="mr-2" rounded="sm" startContent={icon}>
+      Avec icon
+     </Button>
+   ))}
+ </Tabs.Tab>
+ <Tabs.Tab>
+
+```tsx filename="Exemple.tsx"
+import { Button } from "x-react/button";
+
+export default function Example() {
+  const variants = ["solid", "bordered", "faded", "shadow"];
+
+  return (
+    <>
+      {variants.map((variant) => (
+        <Button
+          key={variant}
+          variant={variant}
+          color="primary"
+          className="mr-2"
+          rounded="sm"
+        >
+          {variant.charAt(0).toUpperCase() + variant.slice(1)}
+        </Button>
+      ))}
+    </>
+  );
+}
+```
+
+ </Tabs.Tab>
+</Tabs>
+
+### Props
+
+<Table />
+
+import { Table } from "@/components/Table";
+import { Button } from "x-react/button";
+import { IconPlus, IconTrash } from "x-react/icons";
+
+import { Tabs } from "nextra/components";

@@ -1,0 +1,189 @@
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { Button } from "x-react/button";
+import { IconArrowRight, IconBrandGithub } from "x-react/icons";
+import { useResponsive } from "x-react/hooks";
+import { ExampleCard} from "../components/ExampleCard.tsx";
+
+export const CopyIcon = () => (
+
+<svg
+  className="size-5 absolute -right-2 -top-3"
+  fill="none"
+  strokeWidth="1.5"
+  stroke="currentColor"
+  viewBox="0 0 24 24"
+>
+  <path
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"
+  />
+</svg>
+);
+
+export default function Home() {
+ const { isDesktop } = useResponsive();
+ const [copied, setCopied] = useState(false);
+ const [activeTab, setActiveTab] = useState("npm");
+
+const [isLoading, setIsLoading] = useState(true)
+
+useEffect(() => {
+const timer = setTimeout(() => {
+setIsLoading(false)
+}, 300)
+return () => {
+clearTimeout(timer)
+}
+}, [])
+
+if(isLoading) {
+return(
+
+<div className="w-full h-screen flex justify-center items-center text-white">
+  <p>Chargement...</p>
+</div>
+) }
+
+const commands = {
+npm: (
+
+<>
+  <span className="text-orange-300">npm</span>{" "}
+  <span className="text-[#accf87]">install @xefi/x-react</span>
+</>
+), yarn: (<>
+  <span className="text-orange-300">yarn</span>{" "}
+  <span className="text-[#accf87]">add @xefi/x-react</span>
+</>
+), pnpm: (
+<>
+  <span className="text-orange-300">pnpm</span>{" "}
+  <span className="text-[#accf87]">add @xefi/x-react</span>
+</>
+), bun: (<>
+  <span className="text-orange-300">bun</span>{" "}
+  <span className="text-[#accf87]">add @xefi/x-react</span>
+</>
+), };
+
+const handleCopy = async () => {
+await navigator.clipboard.writeText(
+`${activeTab} ${activeTab === "npm" ? "install" : "add"} @xefi/x-react`
+);
+setCopied(true);
+setTimeout(() => setCopied(false), 2000);
+};
+
+return (
+
+   <div className="relative overflow-hidden w-full min-h-screen text-white">
+     <section className="flex justify-center items-center w-full mt-72">
+       <div 
+         className={`flex ${isDesktop ? 'flex-row' : 'flex-col'} justify-between items-center max-w-7xl w-full gap-10 px-6`}
+         style={{ gap: isDesktop ? '5rem' : '2.5rem' }}
+       >
+         {/* Left Section */}
+         <div className={`flex flex-col gap-6 ${isDesktop ? 'text-left' : 'text-center'} ${isDesktop ? 'w-1/2' : 'w-full'}`}>
+           <h1 className="text-6xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+            <div className="flex items-center font-outfit relative w-max">
+              <span className="font-black bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 bg-clip-text text-transparent hover:scale-105 transition-transform">
+                XEFI
+              </span>
+              <span className="text-3xl font-bold dark:text-white absolute -bottom-2 -right-8">
+                Docs
+              </span>
+            </div>
+              Components Kit
+           </h1>
+           <p className="text-lg sm:text-xl text-gray-400">
+             A powerful collection of React components built for XEFI's ecosystem,
+             combining our design system with flexible customization options.
+           </p>
+           <div className={`flex gap-4 mt-4 ${isDesktop ? 'justify-start' : 'justify-center'}`}>
+             <Button
+               className="px-6 py-3 bg-[#eb7f3d] text-white rounded-lg hover:bg-[#f56d14] transition-colors flex items-center gap-2"
+               endContent={<IconArrowRight />}
+             >
+               <Link href="/getting-started">Get Started</Link>
+             </Button>
+             <Button
+               className="px-6 py-3 bg-[#2A3441] text-white rounded-lg hover:bg-[#2A3441]/90 transition-colors flex items-center gap-2"
+               startContent={<IconBrandGithub className="size-5" />}
+             >
+               <Link
+                 href="https://github.com/AbdelLyon/x-react"
+                 target="_blank"
+                 rel="noopener noreferrer"
+               >
+                 Star on Github
+               </Link>
+             </Button>
+           </div>
+         </div>
+
+         {/* Right Section - Terminal */}
+         <div className={isDesktop ? 'w-[500px]' : 'w-full'}>
+           <div className="bg-[#1E2532] rounded-lg px-3 pb-4 relative">
+             <div className="flex gap-2 justify-between">
+               <div className="flex items-center gap-2">
+                 <div className="size-3 rounded-full bg-red-500"></div>
+                 <div className="size-3 rounded-full bg-yellow-500"></div>
+                 <div className="size-3 rounded-full bg-green-500"></div>
+                 <span className="ml-2 text-sm text-gray-400">Terminal</span>
+               </div>
+               <div className="flex">
+                 {Object.keys(commands).map((pkg) => (
+                   <button
+                     key={pkg}
+                     onClick={() => setActiveTab(pkg)}
+                     className={`px-4 py-2 text-sm ${
+                       activeTab === pkg
+                         ? "text-orange-300"
+                         : "text-gray-400 hover:text-white"
+                     }`}
+                   >
+                     {pkg}
+                   </button>
+                 ))}
+               </div>
+             </div>
+             <div className="flex justify-between items-center mt-4 bg-[#1e293b] p-4 sm:p-6 rounded-lg">
+               <code className="font-mono text-sm block">
+                 {commands[activeTab]}
+               </code>
+               <div className="flex items-center justify-end">
+                 <button
+                   onClick={handleCopy}
+                   className="text-gray-400 hover:text-white transition-colors p-2 rounded relative"
+                 >
+                   {copied ? (
+                     <small className="text-[#accf87] absolute text-sm -right-2 -top-3">
+                       Copied!
+                     </small>
+                   ) : (
+                     <CopyIcon />
+                   )}
+                 </button>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </section>
+     <section className="flex justify-center items-center w-full mt-72">
+       <div
+         className={`flex ${isDesktop ? 'flex-row' : 'flex-col'} justify-between items-center max-w-7xl w-full gap-10 px-6`}
+         style={{ gap: isDesktop ? '5rem' : '2.5rem' }}
+       >
+       <ExampleCard/>
+       </div>
+       </section>
+
+       <footer className="h-40 dark:bg-black/5 mt-10 border-t dark:border-[#2A3441]/40 ">
+       </footer>
+
+   </div>
+ );
+}

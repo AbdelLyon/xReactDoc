@@ -1,0 +1,58 @@
+{
+  "name": "docs",
+  "description": "Auth.js Documentation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typedoc": "typedoc",
+    "dev": "TYPEDOC_SKIP_ADAPTERS=1 typedoc & next dev",
+    "dev:adapters": "typedoc & next dev",
+    "build": "typedoc && next build",
+    "start": "next start",
+    "lint": "eslint ./{components,pages,utils}",
+    "lint:fix": "eslint ./{components,pages,utils} --fix",
+    "build:sitemap": "next-sitemap --config next-sitemap.config.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nextauthjs/next-auth"
+  },
+  "author": "Auth.js Team (https://authjs.dev/contributors)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nextauthjs/next-auth/issues"
+  },
+  "homepage": "https://authjs.dev",
+  "dependencies": {
+    "@ariakit/react": "^0.4.15",
+    "@inkeep/widgets": "^0.2.289",
+    "@next/third-parties": "^14.2.23",
+    "@radix-ui/react-accordion": "^1.2.2",
+    "@radix-ui/react-tabs": "^1.1.2",
+    "@vercel/analytics": "^1.4.1",
+    "@vercel/kv": "^1.0.1",
+    "algoliasearch": "^4.24.0",
+    "classnames": "^2.5.1",
+    "framer-motion": "^11.18.0",
+    "next": "14.2.15",
+    "next-sitemap": "^4.2.3",
+    "nextra": "3.0.15",
+    "nextra-theme-docs": "3.0.15",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-instantsearch": "^7.15.0",
+    "react-instantsearch-nextjs": "^0.2.5",
+    "x-react": "github:AbdelLyon/x-react"
+  },
+  "devDependencies": {
+    "@types/node": "20.12.7",
+    "@types/react": "18.2.78",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "shiki": "^1.27.2",
+    "tailwindcss": "^3.4.17",
+    "typedoc": "^0.25.13",
+    "typedoc-plugin-markdown": "4.0.0-next.54",
+    "typedoc-plugin-mdn-links": "^3.3.8"
+  }
+}
