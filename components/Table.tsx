@@ -131,11 +131,11 @@ export const Table = () => {
       columns={columns}
       variant="bordered"
       rows={tableData}
+      radius="sm"
       classNames={{
-        wrapper:
-          "dark:bg-[#0f172b] mt-6 border dark:border-[#2d2d2d] dark:shadow-none",
-        th: "dark:bg-[#1e293b]",
-        tr: "first:border-none border-t",
+        wrapper: "bg-transparant mt-6 border border-border dark:shadow-none",
+        th: "bg-content1",
+        tr: "first:border-none",
       }}
     />
   );

@@ -9,8 +9,40 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        neutral: {
-          900: "var(--bg-color-neutral-900)",
+        primary: {
+          DEFAULT: "rgb(var(--primary-rgb))",
+          foreground: "rgb(var(--primary-foreground-rgb))",
+        },
+        border: {
+          DEFAULT: "rgb(var(--border-rgb))",
+        },
+        danger: {
+          DEFAULT: "rgb(var(--danger-rgb))",
+          foreground: "rgb(var(--danger-foreground-rgb))",
+        },
+        outline: {
+          DEFAULT: "rgba(var(--outline-rgb))",
+          foreground: "rgb(var(--outline-foreground-rgb))",
+        },
+        background: {
+          DEFAULT: "rgb(var(--background-rgb))",
+          foreground: "rgb(var(--background-foreground-rgb))",
+        },
+        content1: {
+          DEFAULT: "rgb(var(--content1-rgb))",
+          foreground: "rgb(var(--content1-foreground-rgb))",
+        },
+        content2: {
+          DEFAULT: "rgb(var(--content2-rgb))",
+          foreground: "rgb(var(--content2-foreground-rgb))",
+        },
+        content3: {
+          DEFAULT: "rgb(var(--content3-rgb))",
+          foreground: "rgb(var(--content3-foreground-rgb))",
+        },
+        focus: {
+          DEFAULT: "rgb(var(--focus-rgb))",
+          foreground: "rgb(var(--focus-foreground-rgb))",
         },
       },
       animation: {

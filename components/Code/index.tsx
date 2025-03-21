@@ -1,20 +1,20 @@
-import { useRouter } from "next/router"
-import { useThemeConfig } from "nextra-theme-docs"
-import { Tabs } from "nextra/components"
-import React, { Children, useEffect, useState } from "react"
+import { useRouter } from "next/router";
+import { useThemeConfig } from "nextra-theme-docs";
+import { Tabs } from "nextra/components";
+import React, { Children, useEffect, useState } from "react";
 
 interface ChildrenProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
-const AUTHJS_TAB_KEY = "authjs.codeTab.framework"
+const AUTHJS_TAB_KEY = "authjs.codeTab.framework";
 
-Code.Next = NextCode
-Code.NextClient = NextClientCode
-Code.Svelte = SvelteCode
+Code.Next = NextCode;
+Code.NextClient = NextClientCode;
+Code.Svelte = SvelteCode;
 // Code.Solid = SolidCode;
-Code.Express = ExpressCode
-Code.Qwik = QwikCode
+Code.Express = ExpressCode;
+Code.Qwik = QwikCode;
 
 const baseFrameworks = {
   [NextCode.name]: "Next.js",
@@ -22,7 +22,7 @@ const baseFrameworks = {
   [SvelteCode.name]: "SvelteKit",
   [ExpressCode.name]: "Express",
   // [SolidCode.name]: "SolidStart",
-}
+};
 
 const allFrameworks = {
   [NextCode.name]: "Next.js",
@@ -31,45 +31,45 @@ const allFrameworks = {
   [SvelteCode.name]: "SvelteKit",
   // [SolidCode.name]: "SolidStart",
   [ExpressCode.name]: "Express",
-}
+};
 
 const findTabIndex = (frameworks: Record<string, string>, tab: string) => {
   // TODO: Slugify instead of matching on indexes
   return Object.values(frameworks).findIndex(
-    (f) => f.toLowerCase() === tab.toLowerCase()
-  )
-}
+    (f) => f.toLowerCase() === tab.toLowerCase(),
+  );
+};
 
 export function Code({ children }: ChildrenProps) {
-  const router = useRouter()
+  const router = useRouter();
   const {
     query: { framework },
-  } = router
-  const childs = Children.toArray(children)
-  const { project } = useThemeConfig()
+  } = router;
+  const childs = Children.toArray(children);
+  const { project } = useThemeConfig();
 
   const withNextJsPages = childs.some(
     // @ts-expect-error: Hacky dynamic child wrangling
-    (p) => p && p.type.name === NextClientCode.name
-  )
+    (p) => p && p.type.name === NextClientCode.name,
+  );
 
-  const renderedFrameworks = withNextJsPages ? allFrameworks : baseFrameworks
-  const [tabIndex, setTabIndex] = useState(0)
+  const renderedFrameworks = withNextJsPages ? allFrameworks : baseFrameworks;
+  const [tabIndex, setTabIndex] = useState(0);
 
   useEffect(() => {
     const savedTabPreference = Number(
-      window.localStorage.getItem(AUTHJS_TAB_KEY)
-    )
+      window.localStorage.getItem(AUTHJS_TAB_KEY),
+    );
     if (framework) {
       window.localStorage.setItem(
         AUTHJS_TAB_KEY,
-        String(findTabIndex(renderedFrameworks, framework as string))
-      )
-      setTabIndex(findTabIndex(renderedFrameworks, framework as string))
+        String(findTabIndex(renderedFrameworks, framework as string)),
+      );
+      setTabIndex(findTabIndex(renderedFrameworks, framework as string));
     } else if (savedTabPreference) {
-      setTabIndex(savedTabPreference)
+      setTabIndex(savedTabPreference);
     }
-  }, [framework, renderedFrameworks])
+  }, [framework, renderedFrameworks]);
 
   return (
     <div className="[&_div[role='tablist']]:!pb-0">
@@ -80,7 +80,7 @@ export function Code({ children }: ChildrenProps) {
       >
         {Object.keys(renderedFrameworks).map((f) => {
           // @ts-expect-error: Hacky dynamic child wrangling
-          const child = childs.find((c) => c?.type?.name === f)
+          const child = childs.find((c) => c?.type?.name === f);
 
           // @ts-expect-error: Hacky dynamic child wrangling
           return Object.keys(child?.props ?? {}).length ? (
@@ -101,23 +101,23 @@ export function Code({ children }: ChildrenProps) {
                 .
               </p>
             </Tabs.Tab>
-          )
+          );
         })}
       </Tabs>
     </div>
-  )
+  );
 }
 
 function NextClientCode({ children }: ChildrenProps) {
-  return <Tabs.Tab>{children}</Tabs.Tab>
+  return <Tabs.Tab>{children}</Tabs.Tab>;
 }
 
 function NextCode({ children }: ChildrenProps) {
-  return <Tabs.Tab>{children}</Tabs.Tab>
+  return <Tabs.Tab>{children}</Tabs.Tab>;
 }
 
 function SvelteCode({ children }: ChildrenProps) {
-  return <Tabs.Tab>{children}</Tabs.Tab>
+  return <Tabs.Tab>{children}</Tabs.Tab>;
 }
 
 // function SolidCode({ children }: ChildrenProps) {
@@ -125,9 +125,9 @@ function SvelteCode({ children }: ChildrenProps) {
 // }
 
 function ExpressCode({ children }: ChildrenProps) {
-  return <Tabs.Tab>{children}</Tabs.Tab>
+  return <Tabs.Tab>{children}</Tabs.Tab>;
 }
 
 function QwikCode({ children }: ChildrenProps) {
-  return <Tabs.Tab>{children}</Tabs.Tab>
+  return <Tabs.Tab>{children}</Tabs.Tab>;
 }

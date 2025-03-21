@@ -9,15 +9,17 @@ Button Component exporte 2 composants :
 - `Button` : Le composant principal pour afficher un bouton.
 - `ButtonGroup` : Un composant wrapper pour afficher un groupe de boutons.
 
-### Colors
+<h3 className="font-bold text-xl mt-10"># Colors</h3>
 
 <Tabs items={["Preview", "Code"]}>
  <Tabs.Tab>
+      <div className="border border-border rounded-lg px-4 py-6">
    {["primary", "secondary", "success", "danger", "warning"].map((color) => (
-     <Button key={color} color={color} className="mr-2" rounded="sm">
+     <Button key={color} color={color} className="mr-6" rounded="sm">
        {color.charAt(0).toUpperCase() + color.slice(1)}
      </Button>
    ))}
+   </div>
  </Tabs.Tab>
  <Tabs.Tab>
 
@@ -30,7 +32,7 @@ export default function Example() {
   return (
     <>
       {colors.map((color) => (
-        <Button key={color} color={color} className="mr-2" rounded="sm">
+        <Button key={color} color={color} className="mr-6" rounded="sm">
           {color.charAt(0).toUpperCase() + color.slice(1)}
         </Button>
       ))}
@@ -42,15 +44,17 @@ export default function Example() {
  </Tabs.Tab>
 </Tabs>
 
-### Variants
+<h3 className="font-bold text-xl mt-10"># Variants</h3>
 
-<Tabs items={["Preview", "Code"]}>
+<Tabs items={["Preview", "Code"]} className="mt-6">
  <Tabs.Tab>
+     <div className="border border-border rounded-lg px-4 py-6">
    {["solid", "bordered", "faded", "shadow"].map((variant) => (
-     <Button key={variant} variant={variant} color="primary" className="mr-2" rounded="sm">
+     <Button key={variant} variant={variant} color="primary" className="mr-6" rounded="sm">
        {variant.charAt(0).toUpperCase() + variant.slice(1)}
      </Button>
    ))}
+   </div>
  </Tabs.Tab>
  <Tabs.Tab>
 
@@ -67,7 +71,7 @@ export default function Example() {
           key={variant}
           variant={variant}
           color="primary"
-          className="mr-2"
+          className="mr-6"
           rounded="sm"
         >
           {variant.charAt(0).toUpperCase() + variant.slice(1)}
@@ -81,15 +85,17 @@ export default function Example() {
  </Tabs.Tab>
 </Tabs>
 
-### Avec icons
+<h3 className="font-bold text-xl mt-10"># Avec icons</h3>
 
 <Tabs items={["Preview", "Code"]}>
  <Tabs.Tab>
+     <div className="border border-border rounded-lg px-4 py-6">
    {[<IconPlus />, <IconTrash />].map((icon, i) => (
-     <Button key={i}  color="primary" className="mr-2" rounded="sm" startContent={icon}>
+     <Button key={i} color="primary" className="mr-6" rounded="sm" startContent={icon}>
       Avec icon
      </Button>
    ))}
+     </div>
  </Tabs.Tab>
  <Tabs.Tab>
 
@@ -106,7 +112,7 @@ export default function Example() {
           key={variant}
           variant={variant}
           color="primary"
-          className="mr-2"
+          className="mr-6"
           rounded="sm"
         >
           {variant.charAt(0).toUpperCase() + variant.slice(1)}

@@ -3,8 +3,76 @@
 @tailwind utilities;
 @import url("./animated-stars.css");
 
+@layer base {
+  :root {
+    --font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    /* Light mode colors in RGB format */
+    --primary-rgb: 220, 20, 30; /* #dc141e - rouge légèrement ajusté pour meilleure visibilité */
+    --primary-foreground-rgb: 255, 255, 255; /* #ffffff */
+
+    --danger-rgb: 231, 76, 60; /* #e74c3c - rouge danger plus vif et moderne */
+    --danger-foreground-rgb: 255, 255, 255; /* #ffffff */
+
+    --border-rgb: 209, 213, 219, 1; /* #e6e6e6 - bordure légèrement plus douce */
+
+    --outline-rgb: 30, 144, 255, 0.45; /* #1e90ff73 - bleu dodger plus moderne pour l'outline */
+    --outline-foreground-rgb: 255, 255, 255; /* #ffffff */
+
+    --background-rgb: 250, 250, 250; /* #fafafa - fond légèrement moins blanc pour réduire la fatigue oculaire */
+    --background-foreground-rgb: 33, 33, 33; /* #212121 - texte gris foncé au lieu de noir pur */
+
+    --content1-rgb: 255, 255, 255; /* #ffffff */
+    --content1-foreground-rgb: 33, 33, 33; /* #212121 - texte gris foncé au lieu de noir pur */
+  }
+
+  .dark {
+    /* Dark mode colors in RGB format */
+    --primary-rgb: 230, 30, 40; /* #e61e28 - rouge légèrement plus vif pour meilleure visibilité en mode sombre */
+    --primary-foreground-rgb: 255, 255, 255; /* #ffffff */
+    --border-rgb: 64, 64, 64, 1; /* 
+    --danger-rgb: 235, 87, 66; /* #eb5742 - rouge danger plus visible sur fond sombre */
+    --danger-foreground-rgb: 255, 255, 255; /* #ffffff */
+
+    --outline-rgb: 45, 156, 255, 0.5; /* #2d9cff80 - bleu outline plus lumineux pour le mode sombre */
+    --outline-foreground-rgb: 255, 255, 255; /* #ffffff */
+
+    --background-rgb: 28, 30, 33; /* #181a1c - fond sombre légèrement plus bleuté et moins terne */
+    --background-foreground-rgb: 240, 240, 240; /* #f0f0f0 - texte légèrement moins blanc pour réduire le contraste */
+
+    --content1-rgb: 36, 38, 42; /* #24262a - contenu principal légèrement plus bleuté */
+    --content1-foreground-rgb: 240, 240, 240; /* #f0f0f0 - texte moins blanc pour réduire la fatigue oculaire */
+
+    --content2-rgb: 42, 44, 48; /* #2a2c30 - contenu secondaire harmonisé avec le contenu principal */
+    --content2-foreground-rgb: 240, 240, 240; /* #f0f0f0 */
+
+    --content3-rgb: 220, 50, 50; /* #dc3232 - rouge plus vibrant mais moins agressif que le rouge pur */
+    --content3-foreground-rgb: 255, 255, 255; /* #ffffff */
+
+    --focus-rgb: 66, 133, 244; /* #4285f4 - bleu "Google" plus moderne que le bleu pur */
+    --focus-foreground-rgb: 255, 255, 255; /* #ffffff */
+  }
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: 400; /* Regular pour le texte normal */
+}
+
+h1,
+h2,
+h3,
+.heading {
+  font-weight: 500; /* Medium pour les titres */
+}
+
+.button,
+.nav-item {
+  font-weight: 500; /* Medium pour les éléments interactifs */
+  font-size: 0.875rem; /* 14px si la base est 16px */
+}
+
 .dark body {
-  --nextra-bg: 15, 23, 42;
+  --nextra-bg: var(--background-rgb);
 }
 
 details > *:not(summary) {
@@ -34,19 +102,17 @@ html[class~="dark"]
 }
 
 :is(html[class~="dark"]) ::selection {
-  @apply bg-purple-500/40;
+  background-color: rgba(var(--primary-rgb), 0.4);
 }
 
 ::selection {
-  @apply bg-purple-200/80;
+  background-color: rgba(var(--outline-rgb), 0.8);
 }
 
 /* Here because we can't safelist Nextra's tailwind classes
 * and this is used on the index.mdx page */
 ._bg-primary-500 {
-  background-color: hsl(
-    var(--nextra-primary-hue) var(--nextra-primary-saturation) 50%
-  );
+  background-color: rgb(var(--primary-rgb));
 }
 
 .underline-highlight {
@@ -72,31 +138,34 @@ html[class~="dark"]
 }
 
 .blur-shadow {
-  box-shadow: 6px -8px 10px rgb(250 245 255);
+  box-shadow: 6px -8px 10px rgba(var(--outline-rgb), 0.2);
 }
 
 .button-primary {
-  background-color: rgb(147 51 234);
+  background-color: rgb(var(--primary-rgb));
   transition: background-color 0.2s ease-in-out;
-  box-shadow: inset 0 0 0 2px #f3e5f529, inset 0 -2px 1px #ce93d824,
-    inset 0 0 0 1px #6a1b9a36;
+  box-shadow: inset 0 0 0 2px rgba(var(--primary-rgb), 0.16),
+    inset 0 -2px 1px rgba(var(--primary-rgb), 0.14),
+    inset 0 0 0 1px rgba(var(--primary-rgb), 0.22);
 }
 
 .button-primary:hover {
-  background-color: rgb(126 34 206);
+  background-color: rgba(var(--primary-rgb), 0.9);
 }
 
 .nextra-nav-container {
-  @apply !bg-white dark:!bg-[#222427] shadow-lg dark:shadow-none;
+  @apply !bg-background shadow-lg dark:shadow-none;
 }
 
 .dark\:_bg-neutral-900:is(html[class~="dark"] *) {
-  background-color: transparent !important;
+  background-color: rgb(var(--content1-rgb)) !important;
 }
 
 div.nextra-code > pre {
-  @apply overflow-y-visible !bg-white dark:!bg-[#1e293b];
+  @apply overflow-y-visible;
+  background-color: rgb(var(--background-rgbs)) !important;
 }
+
 div.nextra-code * pre {
   --shiki-dark-bg: "transparent" !important;
   @apply !bg-transparent;
@@ -104,10 +173,6 @@ div.nextra-code * pre {
 
 pre code.nextra-code:not(:has(span)) {
   padding-inline: 1rem;
-}
-
-:is(html[class~="dark"] .nextra-code span) {
-  color: var(--shiki-dark) !important;
 }
 
 @keyframes fadeIn {
@@ -148,13 +213,13 @@ pre code.nextra-code:not(:has(span)) {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply !bg-neutral-300 transition-colors duration-300 dark:!bg-neutral-700;
+  background-color: rgba(var(--outline-rgb), 0.3);
   border-radius: 100vh;
   transition: all 250ms ease-in-out;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply !bg-neutral-300 dark:!bg-neutral-700;
+  background-color: rgba(var(--primary-rgb), 0.5);
   background-clip: unset !important;
   cursor: pointer;
 }
@@ -162,11 +227,11 @@ pre code.nextra-code:not(:has(span)) {
 /* Navbar GitHub Star Counter */
 .github-counter {
   position: absolute;
-  color: #000;
+  color: rgb(var(--background-foreground-rgb));
   top: -5px;
   right: -16px;
   font-size: 9px;
-  background-color: #ccc;
+  background-color: rgba(var(--outline-rgb), 0.3);
   padding: 2px 4px;
   border-radius: 10px;
   z-index: 1;
@@ -178,8 +243,8 @@ div.nextra-search + a {
 }
 
 html[data-theme="dark"] .github-counter {
-  background-color: #222;
-  color: #fff;
+  background-color: rgba(var(--outline-rgb), 0.4);
+  color: rgb(var(--background-foreground-rgb));
 }
 
 /* Tooltip transitions */
@@ -210,14 +275,16 @@ html[data-theme="dark"] .github-counter {
 }
 
 #carbonads_bak {
-  @apply flex flex-col gap-1 rounded-md bg-neutral-100 p-3 text-xs text-neutral-500 dark:bg-neutral-800 dark:!text-neutral-400;
+  @apply flex flex-col gap-1 rounded-md p-3 text-xs;
+  background-color: rgba(var(--content1-rgb), 0.1);
+  color: rgb(var(--background-foreground-rgb));
 
   .carbon-text {
-    @apply dark:text-neutral-300;
+    color: rgb(var(--background-foreground-rgb));
   }
 
   .carbon-poweredby {
-    @apply dark:text-neutral-400;
+    color: rgba(var(--background-foreground-rgb), 0.7);
   }
 
   #carbon-responsive .carbon-img {
@@ -240,8 +307,8 @@ html[data-theme="dark"] .github-counter {
   font-size: 0.6rem;
   border-radius: 2rem;
   padding-inline: 0.5rem;
-  color: #696969;
-  @apply bg-neutral-200 dark:bg-neutral-950;
+  color: rgb(var(--background-foreground-rgb));
+  background-color: rgba(var(--outline-rgb), 0.2);
 }
 
 article.nextra-content table {
@@ -281,19 +348,19 @@ div.nextra-search kbd {
   > head:has(meta[content*="reference/core/providers"])
   + body
   .provider {
-  color: #e2e8f0 !important;
+  color: rgb(var(--background-foreground-rgb)) !important;
   background-color: transparent !important;
 }
 
 html > head:has(meta[content*="reference/core/providers"]) + body .provider {
   padding: 1rem;
   font-size: 1rem;
-  color: #000 !important;
+  color: rgb(var(--background-foreground-rgb)) !important;
 }
 
 .nextra-sidebar-container li .active a {
-  border-left: 1px solid #e6870ace !important;
-  color: #e6870ace;
+  border-left: 1px solid rgba(var(--primary-rgb), 0.8) !important;
+  color: rgb(var(--primary-rgb));
   background-color: transparent !important;
   border-radius: 0%;
 }

@@ -6,35 +6,9 @@ import { Code } from "@/components/Code";
 
 Start by installing the appropriate package for your framework.
 
-<Code>
-  <Code.Next>
-    
     ```bash npm2yarn
-    npm install next-auth@beta
+    npm install @xefi/x-react
     ```
-
-  </Code.Next>
-  <Code.Qwik>
-
-    ```bash npm2yarn
-    npm run qwik add auth
-    ```
-
-  </Code.Qwik>
-  <Code.Svelte>
-  
-    ```bash npm2yarn
-    npm install @auth/sveltekit
-    ```
-  </Code.Svelte>
-  <Code.Express>
-  
-    ```bash npm2yarn
-    npm install @auth/express
-    ```
-  
-  </Code.Express>
-</Code>
 
 <Callout type="info">
   Installing `@auth/core` is not necessary, as a user you should never have to
@@ -43,11 +17,26 @@ Start by installing the appropriate package for your framework.
 
 ### Setup Environment
 
-The only environment variable that is mandatory is the `AUTH_SECRET`. This is a random value used by the library to encrypt tokens and email
-verification hashes. (See [Deployment](/getting-started/deployment) to learn more). You can generate one via the official [Auth.js CLI](https://cli.authjs.dev) running:
+To ensure x-react works properly, you need to configure Tailwind CSS and Framer Motion in your project. Tailwind CSS handles the styling while Framer Motion powers our animations. First, initialize Tailwind CSS with this command:
 
-```bash
-npx auth secret
+```bash npm2yarn
+npm install tailwindcss
+npm install react-motion
+```
+
+```ts filename="./tailwind.config.ts"
+/** @type {import('tailwindcss').Config} \*/
+module.exports = {
+  content: [
+    "./node_modules/@xefi/x-react/**/_.{js,ts,jsx,tsx}",
+    "./app/**/_.{js,ts,jsx,tsx}",
+    "./components/*_/_.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
 ```
 
 This will also add it to your `.env` file, respecting the framework conventions (eg.: Next.js' `.env.local`).
