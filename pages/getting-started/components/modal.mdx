@@ -1,8 +1,14 @@
-### Exemple avec Modal
+### Import
+
+```tsx filename="Exemple.tsx"
+import { Modal } from "@xefi/x-react/Modal";
+```
+
+<h3 className="font-bold text-xl mt-10"># Sizes</h3>
 
 <Tabs items={["Preview", "Code"]}>
   <Tabs.Tab>
-    <Modal />
+    <ModalSize />
   </Tabs.Tab>
   <Tabs.Tab>
 
@@ -29,6 +35,72 @@ export const ModalExample = () => {
  </Tabs.Tab>
 </Tabs>
 
-import { Modal } from "@/components/Modal";
+<h3 className="font-bold text-xl mt-10"># Placement</h3>
+
+<Tabs items={["Preview", "Code"]}>
+  <Tabs.Tab>
+    <ModalPlacement />
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+```tsx filename="Exemple.tsx"
+import { Modal } from "x-react/modal";
+
+export const ModalExample = () => {
+  return (
+    <Modal
+      title="modal"
+      className="z-50"
+      trigger={
+        <button className="border py-2 px-5 rounded-md border-primary">
+          open
+        </button>
+      }
+    >
+      content
+    </Modal>
+  );
+};
+```
+
+ </Tabs.Tab>
+</Tabs>
+
+<h3 className="font-bold text-xl mt-10"># Placement</h3>
+
+<Tabs items={["Preview", "Code"]}>
+  <Tabs.Tab>
+    <ModalScrollBehavior />
+  </Tabs.Tab>
+  <Tabs.Tab>
+
+```tsx filename="Exemple.tsx"
+import { Modal } from "x-react/modal";
+
+export const ModalExample = () => {
+  return (
+    <Modal
+      title="modal"
+      className="z-50"
+      trigger={
+        <button className="border py-2 px-5 rounded-md border-primary">
+          open
+        </button>
+      }
+    >
+      content
+    </Modal>
+  );
+};
+```
+
+ </Tabs.Tab>
+</Tabs>
+
+import {
+  ModalSize,
+  ModalPlacement,
+  ModalScrollBehavior,
+} from "@/components/Modal";
 
 import { Tabs } from "nextra/components";
